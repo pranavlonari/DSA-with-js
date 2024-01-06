@@ -33,3 +33,28 @@ BreadthFirstSearch() {
     // Return the final list containing the BFS traversal order
     return list;
 }
+BreadthFirstSearchR(queue, list) {
+    // Base case: If the queue is empty, return the final list
+    if (!queue.length) {
+        return list;
+    }
+
+    // Dequeue the front node from the queue
+    const currentNode = queue.shift();
+
+    // Add the value of the dequeued node to the result list
+    list.push(currentNode.value);
+
+    // Enqueue the left child if it exists
+    if (currentNode.left) {
+        queue.push(currentNode.left);
+    }
+
+    // Enqueue the right child if it exists
+    if (currentNode.right) {
+        queue.push(currentNode.right);
+    }
+
+    // Recursive call to continue the BFS traversal
+    return this.BreadthFirstSearchR(queue, list);
+}
